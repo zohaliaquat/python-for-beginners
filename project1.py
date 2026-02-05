@@ -3,13 +3,11 @@ print("====== SCHOOL MANAGEMENT SYSTEM ======")
 age = int(input("Enter student age: "))
 siblings = input("Any siblings already studying? (yes/no): ").lower()
 
-# Initialize variables
 student_class = None
 admission_fee = 0
 monthly_fee = 0
 discount = 0
 
-# Admission rules
 if 3 <= age <= 5:
     student_class = 1
     admission_fee = 15000
@@ -41,31 +39,64 @@ elif 15 <= age <= 16:
     monthly_fee = 9000
 
 else:
-    print(" Admissions are not allowed for this age.")
+    print("Admissions are not allowed for this age.")
     exit()
 
-# Discount logic
 if siblings == "yes":
     discount = monthly_fee * 0.5
     print("50% sibling discount applied!")
 
 final_monthly_fee = monthly_fee - discount
 
-# Final output
 print("\n----- ADMISSION DETAILS -----")
 print(f"Eligible Class        : {student_class}")
 print(f"Admission Fee         : {admission_fee}")
 print(f"Monthly Fee           : {monthly_fee}")
 print(f"Discount              : {discount}")
 print(f"Final Monthly Fee     : {final_monthly_fee}")
-print("Note:\n Entry Test will be held on Sunday (24-12-25)")
-print("You will get email from us if you clear your Test")
+
+print("\nNOTE:")
+print("Entry Test will be held on Sunday (24-12-25)")
+print("You will get email from us if you clear your test")
 print("Regular classes will start on Monday (15-1-26)")
 
-email=input("Enter your email: ")
-if email.endswith("@gmail.com") and email.index("@") >0 :
-    print("Valid Email")
-else:
-    print("Invalid Email")    
+print("\n---- Enter Details to Appear for Entry Test ----")
 
-print("Thank You")    
+name = input("Enter your name: ")
+email = input("Enter your email: ")
+entry_test_fee = input("Entry Test Fee 500 submitted? (yes/no): ").lower()
+
+selected_students = []
+
+if email.endswith("@gmail.com") and "@" in email:
+    print("Email is Valid")
+
+    if entry_test_fee == "yes":
+        print("Entry Test Fee Submitted Successfully")
+
+        student = {
+            "Name": name,
+            "Email": email,
+            "Class": student_class
+        }
+
+        selected_students.append(student)
+
+        print("\nYou are successfully registered for Entry Test.")
+        print("This is the information that you submitted:")
+        print("Name  :", name)
+        print("Email :", email)
+        print("\nOur team will contact you via email.")
+
+    else:
+        print("Entry Test Fee not submitted")
+
+else:
+    print("Invalid Email")
+
+# Admin use only
+# selected_students list is visible to admin only
+
+print("\nEntry test details are mentioned on our portal.")
+print("If you have any queries, feel free to contact us.")
+print("------------------- Thank You! -------------------")
